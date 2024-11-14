@@ -1,8 +1,8 @@
-import Logo from "../assets/icons/LogoJamOrange.svg";
-import Home from "../assets/icons/Home.svg";
-import Search from "../assets/icons/Search.svg";
-import Infos from "../assets/icons/Infos.svg";
 import { NavLink } from "react-router-dom";
+import Home from "../assets/icons/Home.svg";
+import Infos from "../assets/icons/Infos.svg";
+import Logo from "../assets/icons/LogoJamOrange.svg";
+import Search from "../assets/icons/Search.svg";
 
 function Navbar() {
   return (

@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import Home from "./pages/Home";
 
 /* ************************************************************************* */
 
@@ -17,15 +18,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        //  Insérer le composant qui gère l'affichage de l'accueil
-      },
-      {
-        path: "artist/:artistId",
-        //  Insérer le composant qui gère l'affichage d'un artiste
+        element: <Home />,
       },
       {
         path: "playlist/:playlistId",
         //  Insérer le composant qui gère l'affichage d'une playlist
+      },
+      {
+        path: "artist/:artistId",
+        //  Insérer le composant qui gère l'affichage d'un artiste
       },
     ],
   },

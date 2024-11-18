@@ -2,22 +2,42 @@ import { useEffect, useState } from "react";
 import Artists from "../components/Artists";
 import Banner from "../components/Banner";
 import Playlists from "../components/Playlists";
-import type { Artist, Playlist } from "../types/type";
+import type { Artist, Playlist } from "../types/type.ts";
 
 function Home() {
   const [playlist, setPlaylist] = useState<Playlist[]>([]);
   const [artists, setArtists] = useState<Artist[]>([]);
 
   useEffect(() => {
-    fetch("https://app-back-jam.vercel.app/api/playlists")
-      .then((response) => response.json())
-      .then((data: Playlist[]) => setPlaylist(data))
-      .catch((error) => console.error(error));
+    const cachedPlaylist = localStorage.getItem("playlist");
+    const cachedArtists = localStorage.getItem("artists");
 
-    fetch("https://app-back-jam.vercel.app/api/artists")
-      .then((response) => response.json())
-      .then((data: Artist[]) => setArtists(data))
-      .catch((error) => console.error(error));
+    if (cachedPlaylist) {
+      setPlaylist(JSON.parse(cachedPlaylist));
+    } else {
+      fetch("http://localhost:3008/deezer-playlists")
+        .then((response) => response.json())
+        .then((data) => {
+          const validData = data.filter((item: Playlist) => !item.error);
+
+          setPlaylist(validData);
+          localStorage.setItem("playlist", JSON.stringify(data));
+        })
+        .catch((error) => console.error(error));
+    }
+    if (cachedArtists) {
+      setArtists(JSON.parse(cachedArtists));
+    } else {
+      fetch("http://localhost:3008/deezer-artists")
+        .then((response) => response.json())
+        .then((data) => {
+          const validData = data.filter((item: Artist) => !item.error);
+
+          setArtists(validData);
+          localStorage.setItem("artists", JSON.stringify(data));
+        })
+        .catch((error) => console.error(error));
+    }
   }, []);
   return (
     <>

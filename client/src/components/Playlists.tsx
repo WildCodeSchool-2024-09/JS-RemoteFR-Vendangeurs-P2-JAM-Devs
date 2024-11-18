@@ -1,4 +1,4 @@
-import carre from "../assets/icons/who.jpeg";
+// import carre from "../assets/icons/who.jpeg";
 import type { Playlist } from "../types/type";
 
 interface PlaylistsProps {
@@ -19,13 +19,13 @@ function Playlists({ dataPlaylist }: PlaylistsProps) {
                 <div className="justify-center items-center flex flex-col gap-2 flex-shrink-0">
                   <div className="bg-secondary-100 w-[136px] h-[136px] rounded-full justify-center items-center flex laptop:w-[135px] laptop:h-[135px]">
                     <img
-                      src={playlist.image ? playlist.image : carre}
+                      src={playlist.picture}
                       alt="playlist"
                       className="w-32 h-32 rounded-full border-4 border-accent laptop:w-30 laptop:h-30"
                     />
                   </div>
                   <span className="text-primary laptop:text-lg font-text max-w-36 text-center">
-                    {playlist.name}
+                    {playlist.title}
                   </span>
                 </div>
               </article>

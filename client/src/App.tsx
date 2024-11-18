@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import Player from "./components/Player";
 
 function App() {
   return (
     <div className="h-screen flex flex-col">
-      {/* Le composant Menu viendra ici */}
       <header>
         <Navbar />
       </header>
@@ -14,7 +14,9 @@ function App() {
           <Outlet />
         </div>
       </main>
-      <footer>{/* Le composant Player viendra ici */}</footer>
+      <footer>
+        <Player />
+      </footer>
     </div>
   );
 }

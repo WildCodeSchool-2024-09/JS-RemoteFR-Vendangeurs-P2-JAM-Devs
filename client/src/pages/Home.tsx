@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Artists from "../components/Artists";
-import Banner from "../components/Banner";
+import BannerHome from "../components/BannerHome.tsx";
+import BannerSection from "../components/BannerSection.tsx";
 import Playlists from "../components/Playlists";
 import type { Artist, Playlist } from "../types/type.ts";
 
@@ -40,11 +41,13 @@ function Home() {
     }
   }, []);
   return (
-    <>
-      <Banner />
+    <div className="h-full">
+      <BannerSection showBg={false} showBorder={false} blur={true}>
+        <BannerHome />
+      </BannerSection>
       <Playlists dataPlaylist={playlist} />
       <Artists dataArtist={artists} />
-    </>
+    </div>
   );
 }
 

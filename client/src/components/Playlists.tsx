@@ -1,4 +1,3 @@
-// import carre from "../assets/icons/who.jpeg";
 import { Link } from "react-router-dom";
 import type { Playlist } from "../types/type";
 

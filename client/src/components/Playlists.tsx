@@ -1,5 +1,5 @@
-// import carre from "../assets/icons/who.jpeg";
 import type { Playlist } from "../types/type";
+import PlayButton from "./PlayButton";
 
 interface PlaylistsProps {
   dataPlaylist: Playlist[];
@@ -15,14 +15,17 @@ function Playlists({ dataPlaylist }: PlaylistsProps) {
         <div className="flex justify-start gap-4 w-full laptop:gap-11 overflow-x-scroll">
           {dataPlaylist.map((playlist) => {
             return (
-              <article key={playlist.id} className="ml-10">
+              <article key={playlist.id} className="ml-10 group">
                 <div className="justify-center items-center flex flex-col gap-2 flex-shrink-0">
-                  <div className="bg-secondary-100 w-[136px] h-[136px] rounded-full justify-center items-center flex laptop:w-[135px] laptop:h-[135px]">
+                  <div className="relative bg-secondary-100 w-[136px] h-[136px] rounded-full justify-center items-center flex laptop:w-[135px] laptop:h-[135px]">
                     <img
                       src={playlist.picture}
                       alt="playlist"
                       className="w-32 h-32 rounded-full border-4 border-accent laptop:w-30 laptop:h-30"
                     />
+                    <div className="absolute bottom-0 right-0 hidden group-hover:flex">
+                      <PlayButton id={playlist.id} />
+                    </div>
                   </div>
                   <span className="text-primary laptop:text-lg font-text max-w-36 text-center">
                     {playlist.title}

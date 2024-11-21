@@ -8,6 +8,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 // Import the main app component
 import App from "./App";
 import Home from "./pages/Home";
+import PlaylistPage from "./pages/PlaylistPage";
 
 /* ************************************************************************* */
 
@@ -21,11 +22,11 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "playlist/:playlistId",
-        //  Insérer le composant qui gère l'affichage d'une playlist
+        path: "playlist/:id",
+        element: <PlaylistPage />,
       },
       {
-        path: "artist/:artistId",
+        path: "artist/:id",
         //  Insérer le composant qui gère l'affichage d'un artiste
       },
     ],

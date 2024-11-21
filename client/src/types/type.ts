@@ -9,6 +9,7 @@ export interface Artist {
 export interface Playlist {
   id: number;
   picture: string;
+  picture_big: string;
   title: string;
   error: string;
 }
@@ -24,4 +25,12 @@ export interface Track {
     cover_big: string;
   };
   artist: Artist;
+}
+
+export interface BannerProps {
+  children: React.ReactNode;
+  showBg: boolean;
+  showBorder: boolean;
+  image?: string;
+  blur?: boolean;
 }

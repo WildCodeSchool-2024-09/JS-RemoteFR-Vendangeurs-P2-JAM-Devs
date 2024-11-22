@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Artists from "../components/Artists";
-import Banner from "../components/Banner";
+import BannerHome from "../components/BannerHome.tsx";
+import BannerSection from "../components/BannerSection.tsx";
 import Playlists from "../components/Playlists";
+import Wrapper from "../components/Wrapper.tsx";
 import type { Artist, Playlist } from "../types/type.ts";
 
 function Home() {
@@ -41,9 +43,13 @@ function Home() {
   }, []);
   return (
     <>
-      <Banner />
-      <Playlists dataPlaylist={playlist} />
-      <Artists dataArtist={artists} />
+      <BannerSection showBg={false} showBorder={false} blur={true}>
+        <BannerHome />
+      </BannerSection>
+      <Wrapper variantWidth={true}>
+        <Playlists dataPlaylist={playlist} />
+        <Artists dataArtist={artists} />
+      </Wrapper>
     </>
   );
 }

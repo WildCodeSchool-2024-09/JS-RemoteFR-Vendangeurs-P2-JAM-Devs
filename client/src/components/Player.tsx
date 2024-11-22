@@ -8,7 +8,6 @@ import Previous from "../assets/icons/Previous.svg";
 import Random from "../assets/icons/Random.svg";
 import Repeat from "../assets/icons/Repeat.svg";
 import Speaker from "../assets/icons/Speaker.svg";
-import Pochette from "../assets/picture/pochette.jpg";
 
 function Player() {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -52,11 +51,7 @@ function Player() {
           {/* Pochette album + artiste + titre */}
 
           <button type="button">
-            <img
-              src={Pochette}
-              alt="Pochette Albun Red Hot"
-              className="w-11 h-11 "
-            />
+            <img src="" alt="Pochette Albun Red Hot" className="w-11 h-11 " />
           </button>
 
           <div className="text-primary text-sm hidden laptop:block font-text">

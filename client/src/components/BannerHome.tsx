@@ -1,14 +1,14 @@
 import face_album from "../assets/icons/album_face.webp";
 import play from "../assets/icons/play.svg";
 
-function Banner() {
+function BannerHome() {
   return (
-    <section className="flex flex-col justify-center items-center bg-secondary-200/40 backdrop-blur-3xl py-4 laptop:flex-row laptop:gap-64 ">
+    <div className="laptop:flex laptop:gap-64">
       <div className="flex justify-center">
         <img
           src={face_album}
           alt="playlist"
-          className="w-72 h-72 rounded-md laptop:w-80 laptop:h-80"
+          className="w-52 h-52 rounded-md laptop:w-80 laptop:h-80"
         />
       </div>
       <div>
@@ -29,8 +29,8 @@ function Banner() {
           </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 
-export default Banner;
+export default BannerHome;

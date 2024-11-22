@@ -1,4 +1,3 @@
-// import carre from "../assets/icons/who.jpeg";
 import type { Playlist } from "../types/type";
 
 interface PlaylistsProps {
@@ -7,12 +6,12 @@ interface PlaylistsProps {
 
 function Playlists({ dataPlaylist }: PlaylistsProps) {
   return (
-    <section className="mb-8 w-full laptop:my-20">
-      <h2 className="font-title text-primary mb-6 text-3xl text-center laptop:text-6xl">
-        Playlists
+    <section className="mb-8 w-full my-10 laptop:my-20 space-y-10 laptop:space-y-20 ">
+      <h2 className="font-title text-primary mb-6 text-3xl text-center laptop:text-start laptop:pl-20 laptop:text-6xl">
+        Playlists à la une
       </h2>
       <div className="w-full px-2 laptop:px-10 ">
-        <div className="flex justify-start gap-4 w-full laptop:gap-11 overflow-x-scroll">
+        <div className="flex laptop:justify-evenly gap-4 w-full laptop:gap-11 overflow-x-scroll laptop:overflow-x-scroll scrollbar-hide">
           {dataPlaylist.map((playlist) => {
             return (
               <article key={playlist.id} className="ml-10">

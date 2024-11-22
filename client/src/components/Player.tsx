@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Like from "../assets/icons/Like.svg";
 import Mute from "../assets/icons/Mute.svg";
 import Next from "../assets/icons/Next.svg";
@@ -8,13 +8,26 @@ import Previous from "../assets/icons/Previous.svg";
 import Random from "../assets/icons/Random.svg";
 import Repeat from "../assets/icons/Repeat.svg";
 import Speaker from "../assets/icons/Speaker.svg";
-import Pochette from "../assets/picture/pochette.jpg";
+import { usePlayer } from "../context/PlayerContext";
 
 function Player() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.5);
+  // CONTEXTE
+  const { playerState } = usePlayer();
+
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+  const currentTrack = playerState[currentTrackIndex];
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.src = currentTrack?.preview;
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  }, [currentTrack]);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -40,6 +53,11 @@ function Player() {
     }
     setVolume(newVolume);
   };
+  const handleTrackEnd = () => {
+    if (currentTrackIndex < playerState.length - 1) {
+      setCurrentTrackIndex(currentTrackIndex + 1);
+    }
+  };
 
   return (
     <section
@@ -53,19 +71,23 @@ function Player() {
 
           <button type="button">
             <img
-              src={Pochette}
-              alt="Pochette Albun Red Hot"
-              className="w-11 h-11 "
+              src={currentTrack?.artist.picture_small}
+              alt={
+                currentTrack?.artist.name || null
+                  ? currentTrack?.artist.name
+                  : ""
+              }
+              className=" w-18 h-11 "
             />
           </button>
 
           <div className="text-primary text-sm hidden laptop:block font-text">
-            <p className="font-bold">Red Hot Chili Peppers</p>
-            <p>Stadium Acardium</p>
+            <p className="font-bold">{currentTrack?.artist.name || null} </p>
+            <p>{currentTrack?.title || null} </p>
           </div>
         </aside>
 
-        {/* Bouton random */}
+        {/* BOUTON RANDOM */}
         <article className="flex justify-center items-center gap-8 w-1/2">
           <div className="laptop:flex hidden ">
             <button type="button"> </button>
@@ -142,9 +164,9 @@ function Player() {
         </aside>
       </div>
       <div className=" gap-2 text-primary text-xs laptop:hidden flex font-text ">
-        <p className="font-bold">Red Hot Chili Peppers </p>
-        <span>-</span>
-        <p>Stadium Acardium</p>
+        <p className="font-bold">{currentTrack?.artist.name || null} </p>
+        <span>{currentTrack?.title || null}</span>
+        <p> </p>
       </div>
 
       {/* PROGRESS BARRE */}
@@ -158,8 +180,10 @@ function Player() {
         hidden laptop:block"
       />
       <audio
+        onEnded={handleTrackEnd}
+        autoPlay
         ref={audioRef}
-        src="https://app-back-jam.vercel.app/audio/red-hot-chili-peppers/stadium-arcadium/snow.mp3"
+        src={currentTrack?.preview}
       >
         <track
           kind="captions"

@@ -15,7 +15,7 @@ function Playlists({ dataPlaylist }: PlaylistsProps) {
         <div className="flex justify-start gap-4 w-full laptop:gap-11 overflow-x-scroll">
           {dataPlaylist.map((playlist) => {
             return (
-              <article key={playlist.id} className="ml-10">
+              <article key={playlist.id} className="ml-10 group">
                 <div className="justify-center items-center flex flex-col gap-2 flex-shrink-0">
                   <div className="bg-secondary-100 w-[136px] h-[136px] rounded-full justify-center items-center flex laptop:w-[135px] laptop:h-[135px]">
                     <Link to={`/playlist/${playlist.id}`}>

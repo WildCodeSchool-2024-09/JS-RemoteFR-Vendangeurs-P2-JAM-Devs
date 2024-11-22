@@ -3,6 +3,7 @@ export interface Artist {
   name: string;
   picture: string;
   error: string;
+  picture_small: string;
 }
 
 export interface Playlist {
@@ -18,13 +19,12 @@ export interface Track {
   title: string;
   title_short: string;
   duration: number;
+  preview: string;
   album: {
     cover_small: string;
     cover_big: string;
   };
-  artist: {
-    name: string;
-  };
+  artist: Artist;
 }
 
 export interface BannerProps {

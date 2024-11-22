@@ -10,6 +10,7 @@ import App from "./App";
 import AlbumDetails from "./pages/AlbumDetails";
 import ArtistPage from "./pages/ArtistPage";
 import Home from "./pages/Home";
+import PlaylistPage from "./pages/PlaylistPage";
 
 /* ************************************************************************* */
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "playlist/:id",
+        element: <PlaylistPage />,
       },
       {
         path: "artist/:id",

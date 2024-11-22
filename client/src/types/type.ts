@@ -27,6 +27,7 @@ export interface Playlist {
 export interface Artist {
   id?: number;
   name: string;
+  picture_small: string;
   picture: string | undefined;
   picture_medium?: string | undefined;
   nb_fan?: number;
@@ -58,9 +59,9 @@ export interface Track {
   title?: string | undefined;
   title_short?: string | undefined;
   duration: number;
-  md5_image?: string | undefined;
   imageBig?: string | undefined;
   imageSmall?: string | undefined;
+  preview?: string;
   album?: {
     id: number;
     cover_small: string;
@@ -68,19 +69,11 @@ export interface Track {
   };
   artist?: {
     name: string | undefined;
+    picture_small: string;
   };
   track?: {
     artist?: {
       name?: string | undefined;
     };
-  };
-}
-
-export interface Radio {
-  id: number;
-  title_short: string;
-  artist: {
-    name: string;
-    picture: string;
   };
 }

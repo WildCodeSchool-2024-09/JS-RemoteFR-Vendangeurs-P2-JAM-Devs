@@ -10,7 +10,7 @@ function TopAlbum({ cover, title, release, nbFan }: Albums) {
         <h2 className="text-primary text-3xl laptop:text-6xl font-bold text-center laptop:pl-3 font-title laptop:self-start">
           Album le plus populaire
         </h2>
-        <div className="flex flex-col laptop:flex-row justify-center gap-4 laptop:gap-60 items-center w-full border-b-2 laptop:border-b-4 border-secondary-250 pb-8">
+        <div className="flex flex-col laptop:flex-row justify-center gap-4 laptop:gap-60 items-center w-full border-b-2 laptop:border-b-2 border-secondary-250 pb-8">
           <img
             src={cover}
             alt={`Pochette de l'album ${title}`}

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Like from "../assets/icons/Like.svg";
 import Mute from "../assets/icons/Mute.svg";
 import Next from "../assets/icons/Next.svg";
 import Pause from "../assets/icons/Pause.svg";
@@ -23,7 +22,7 @@ function Player() {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.src = currentTrack?.preview;
+      audioRef.current.src = currentTrack?.preview || "";
       audioRef.current.play();
       setIsPlaying(true);
     }
@@ -68,80 +67,98 @@ function Player() {
       <div className="flex w-full justify-around px-2 ">
         <aside className="flex gap-2 items-center justify-center w-1/4">
           {/* Pochette album + artiste + titre */}
-
-          <button type="button">
-            <img
-              src={currentTrack?.artist.picture_small}
-              alt={
-                currentTrack?.artist.name || null
-                  ? currentTrack?.artist.name
-                  : ""
-              }
-              className=" w-18 h-11 "
-            />
-          </button>
+          {currentTrack ? (
+            <button type="button">
+              <img
+                src={currentTrack?.artist?.picture_small}
+                alt={
+                  currentTrack?.artist?.name || null
+                    ? currentTrack?.artist?.name
+                    : ""
+                }
+                className=" w-11 h-11 laptop:w-14 laptop:h-14 "
+              />
+            </button>
+          ) : (
+            ""
+          )}
 
           <div className="text-primary text-sm hidden laptop:block font-text">
-            <p className="font-bold">{currentTrack?.artist.name || null} </p>
+            <p className="font-bold">{currentTrack?.artist?.name || null} </p>
             <p>{currentTrack?.title || null} </p>
           </div>
         </aside>
 
         {/* BOUTON RANDOM */}
-        <article className="flex justify-center items-center gap-8 w-1/2">
-          <div className="laptop:flex hidden ">
-            <button type="button"> </button>
-            <img src={Random} alt="Bouton musique aléatoire" />
+        <article className="flex flex-col justify-center items-center laptop:gap-4 w-full">
+          <div className="flex justify-center items-center gap-4 laptop:gap-8 w-1/2">
+            <div className="laptop:flex hidden ">
+              <button type="button"> </button>
+              <img src={Random} alt="Bouton musique aléatoire" />
+            </div>
+
+            {/* BOUTON PREVIOUS */}
+            <div className="flex items-center">
+              <button type="button">
+                <img
+                  src={Previous}
+                  alt="Bouton Previous"
+                  className="h-[25px] w-[25px]"
+                />
+              </button>
+            </div>
+
+            {/* BOUTON PLAY */}
+            <div className="bg-accent rounded-full">
+              <button
+                type="button"
+                className="flex justify-center items-center "
+                onClick={handlePlayPause}
+              >
+                <div className="w-10 h-10 flex justify-center items-center ">
+                  {isPlaying ? (
+                    <img src={Pause} alt="Bouton pause" className="w-[15px] " />
+                  ) : (
+                    <img
+                      src={Play}
+                      alt="Bouton play/pause"
+                      className="h-[15px] w-[15px]"
+                    />
+                  )}
+                </div>
+              </button>
+            </div>
+
+            {/* BOUTON NEXT */}
+            <div className="flex justify-end items-center">
+              <button type="button">
+                <img
+                  src={Next}
+                  alt="Bouton Next"
+                  className="h-[25px] w-[25px]"
+                />
+              </button>
+            </div>
+
+            {/* BOUTON REPEAT */}
+            <div className="hidden laptop:flex  ">
+              <button type="button"> </button>
+              <img src={Repeat} alt="Bouton repeat" />
+            </div>
           </div>
 
-          {/* BOUTON PREVIOUS */}
-          <div className="flex items-center">
-            <button type="button">
-              <img src={Previous} alt="Bouton Previous" className="h-[25px]" />
-            </button>
-          </div>
-
-          {/* BOUTON PLAY */}
-          <div className="bg-accent rounded-full">
-            <button
-              type="button"
-              className="flex justify-center items-center "
-              onClick={handlePlayPause}
-            >
-              <div className="w-10 h-10 flex justify-center items-center ">
-                {isPlaying ? (
-                  <img src={Pause} alt="Bouton pause" className="w-[15px] " />
-                ) : (
-                  <img
-                    src={Play}
-                    alt="Bouton play/pause"
-                    className="h-[15px] w-[15px]"
-                  />
-                )}
-              </div>
-            </button>
-          </div>
-
-          {/* BOUTON NEXT */}
-          <div className="flex items-center">
-            <button type="button">
-              <img src={Next} alt="Bouton Next" className="h-[25px]" />
-            </button>
-          </div>
-
-          {/* BOUTON REPEAT */}
-          <div className="hidden laptop:flex  ">
-            <button type="button"> </button>
-            <img src={Repeat} alt="Bouton repeat" />
-          </div>
-
-          {/* BOUTON LIKE */}
+          {/* PROGRESS BARRE */}
+          <progress
+            max="100"
+            value="30"
+            className=" [&::-webkit-progress-value]:rounded-lg 
+        [&::-webkit-progress-value]:bg-orange-400 
+        [&::-webkit-progress-bar]:rounded-lg 
+        [&::-webkit-progress-bar]:bg-white w-1/2 h-1 bg-purple-950
+        hidden laptop:block"
+          />
         </article>
         <aside className=" w-1/4 flex justify-center gap-4 items-center ">
-          <button type="button">
-            <img src={Like} alt="Bouton like" className="w-[20px]" />
-          </button>
-
           {/*GESTION DU VOLUME */}
           <input
             type="range"
@@ -164,31 +181,18 @@ function Player() {
         </aside>
       </div>
       <div className=" gap-2 text-primary text-xs laptop:hidden flex font-text ">
-        <p className="font-bold">{currentTrack?.artist.name || null} </p>
+        <p className="font-bold">{currentTrack?.artist?.name || null} </p>
         <span>{currentTrack?.title || null}</span>
         <p> </p>
       </div>
 
-      {/* PROGRESS BARRE */}
-      <progress
-        max="100"
-        value="30"
-        className=" [&::-webkit-progress-value]:rounded-lg 
-        [&::-webkit-progress-value]:bg-orange-400 
-        [&::-webkit-progress-bar]:rounded-lg 
-        [&::-webkit-progress-bar]:bg-white w-1/2 h-1 bg-purple-950
-        hidden laptop:block"
-      />
       <audio
         onEnded={handleTrackEnd}
         autoPlay
         ref={audioRef}
         src={currentTrack?.preview}
       >
-        <track
-          kind="captions"
-          src="https://app-back-jam.vercel.app/audio/red-hot-chili-peppers/stadium-arcadium/snow.vtt"
-        />
+        <track kind="captions" src={currentTrack?.preview} />
       </audio>
     </section>
   );

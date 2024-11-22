@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/api": {
-        target: "https://api.deezer.com/",
+        target: "https://api.deezer.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

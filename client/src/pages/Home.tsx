@@ -3,6 +3,7 @@ import Artists from "../components/Artists";
 import BannerHome from "../components/BannerHome.tsx";
 import BannerSection from "../components/BannerSection.tsx";
 import Playlists from "../components/Playlists";
+import Wrapper from "../components/Wrapper.tsx";
 import type { Artist, Playlist } from "../types/type.ts";
 
 function Home() {
@@ -41,13 +42,15 @@ function Home() {
     }
   }, []);
   return (
-    <div className="h-full">
+    <>
       <BannerSection showBg={false} showBorder={false} blur={true}>
         <BannerHome />
       </BannerSection>
-      <Playlists dataPlaylist={playlist} />
-      <Artists dataArtist={artists} />
-    </div>
+      <Wrapper variantWidth={true}>
+        <Playlists dataPlaylist={playlist} />
+        <Artists dataArtist={artists} />
+      </Wrapper>
+    </>
   );
 }
 

@@ -1,4 +1,4 @@
-import play from "../assets/icons/play.svg";
+import Play from "../assets/icons/Play.svg";
 import { usePlayer } from "../context/PlayerContext";
 
 function PlayButton({ id }: { id: number }) {
@@ -16,7 +16,7 @@ function PlayButton({ id }: { id: number }) {
       className="flex bg-accent p-2 rounded-full"
       onClick={handlePlayTrackList}
     >
-      <img src={play} alt=" bouton play" className="w-6 h-6" />
+      <img src={Play} alt=" bouton play" className="w-6 h-6" />
     </button>
   );
 }

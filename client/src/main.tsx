@@ -7,6 +7,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 // Import the main app component
 import App from "./App";
+import AlbumDetails from "./pages/AlbumDetails";
+import ArtistPage from "./pages/ArtistPage";
 import Home from "./pages/Home";
 import PlaylistPage from "./pages/PlaylistPage";
 
@@ -27,7 +29,11 @@ const router = createBrowserRouter([
       },
       {
         path: "artist/:id",
-        //  Insérer le composant qui gère l'affichage d'un artiste
+        element: <ArtistPage />,
+      },
+      {
+        path: "album/:id",
+        element: <AlbumDetails />,
       },
     ],
   },

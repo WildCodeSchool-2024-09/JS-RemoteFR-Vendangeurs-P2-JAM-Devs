@@ -119,7 +119,7 @@ function ArtistPage() {
           </Wrapper>
 
           <Wrapper variantWidth={false}>
-            <div className="flex overflow-y-auto scrollbar-hide laptop:grid laptop:grid-cols-5 laptop:justify-envenly laptop:gap-4 w-full">
+            <div className="flex overflow-y-auto scrollbar-hide laptop:grid laptop:grid-cols-4 desktop:grid-cols-5 laptop:justify-envenly laptop:gap-4 w-full">
               {albums.map((album) => (
                 <AlbumsList
                   key={album.id}
@@ -162,7 +162,7 @@ function ArtistPage() {
             </h2>
           </Wrapper>
           <Wrapper variantWidth={false}>
-            <div className="flex overflow-y-auto scrollbar-hide laptop:grid laptop:grid-cols-6 laptop:justify-envenly laptop:gap-4 w-full">
+            <div className="flex overflow-y-auto scrollbar-hide laptop:grid laptop:grid-cols-4 desktop:grid-cols-5 laptop:justify-envenly laptop:gap-4 w-full">
               {artistRelated.map((artistRelated) => (
                 <article
                   key={artistRelated.id}

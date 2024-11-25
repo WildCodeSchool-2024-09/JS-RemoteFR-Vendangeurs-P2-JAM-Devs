@@ -1,5 +1,5 @@
+import Play from "../assets/icons/Play.svg";
 import face_album from "../assets/icons/album_face.webp";
-import play from "../assets/icons/play.svg";
 
 function BannerHome() {
   return (
@@ -25,7 +25,7 @@ function BannerHome() {
             type="button"
             className="flex bg-accent p-3 my-2 rounded-full"
           >
-            <img src={play} alt="play" className="w-8 h-8" />
+            <img src={Play} alt="play" className="w-8 h-8" />
           </button>
         </div>
       </div>

@@ -11,7 +11,7 @@ function Artists({ dataArtist }: ArtistProps) {
         Artistes à la une
       </h2>
       <div className="w-full px-2 laptop:px-10 ">
-        <div className="flex laptop:justify-evenly gap-4 w-full laptop:gap-11 overflow-x-scroll scrollbar-hide">
+        <div className="flex laptop:grid laptop:grid-cols-4 desktop:grid-cols-5 gap-4 w-full laptop:gap-8 overflow-x-auto scrollbar-hide">
           {dataArtist.map((artist) => {
             return (
               artist && (

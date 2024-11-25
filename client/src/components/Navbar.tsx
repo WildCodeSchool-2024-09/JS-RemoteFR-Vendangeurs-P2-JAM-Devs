@@ -1,27 +1,16 @@
-import { NavLink } from "react-router-dom";
-import Home from "../assets/icons/Home.svg";
 import Logo from "../assets/icons/LogoJamOrange.svg";
 import Search from "../assets/icons/Search.svg";
+import NavigationButtons from "./NavigationButtons";
 
 function Navbar() {
   return (
-    <section className="flex justify-between items-center px-4 py-2 w-full">
-      <div className="laptop:w-full laptop:pl-20">
-        <img
-          src={Logo}
-          alt="Logo JAM"
-          className="w-12 h-12 laptop:w-24 laptop:h-24"
-        />
+    <section className="flex justify-between items-center px-4 laptop:px-20 py-2 w-full">
+      <div className="w-12 h-12 laptop:w-24 laptop:h-24 flex justify-center items-center">
+        <img src={Logo} alt="Logo JAM" />
       </div>
-      <article className="flex items-center gap-2 laptop:gap-4 laptop:justify-center laptop:w-1/2">
-        <NavLink to="/">
-          <img
-            src={Home}
-            alt="Icon Home"
-            className="h-[30px] w-[30px] laptop:w-[40px] laptop:h-[40px] "
-          />
-        </NavLink>
-        <div className="relative">
+      <div className="flex items-center gap-2 laptop:gap-4 laptop:justify-end laptop:w-1/2">
+        <NavigationButtons />
+        <div className="relative w-auto">
           <input
             type="text"
             placeholder="Rechercher"
@@ -33,7 +22,7 @@ function Navbar() {
             className="absolute top-[7px] left-[8px] w-[15px] h-[15px] laptop:top-[5px] laptop:w-[20px] laptop:h-[20px]"
           />
         </div>
-      </article>
+      </div>
     </section>
   );
 }

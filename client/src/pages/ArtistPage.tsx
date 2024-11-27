@@ -94,6 +94,7 @@ function ArtistPage() {
                 className="w-full mx-auto flex flex-col items-center"
               >
                 <TrackList
+                  id={track.id}
                   title={track.title_short}
                   duration={track.duration}
                   artist={track.artist}

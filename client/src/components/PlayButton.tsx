@@ -14,6 +14,7 @@ interface PlayButtonProps {
   albumId?: number;
   track?: Track;
   albumDetailId?: number;
+  id?: number;
 }
 
 function PlayButton({

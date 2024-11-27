@@ -77,3 +77,51 @@ export interface Track {
     };
   };
 }
+
+export interface SearchBarItem {
+  title?: string;
+  artist?: {
+    name?: string;
+  };
+}
+
+export interface SearchResultItem {
+  id: number;
+  title: string;
+  artist: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface ArtistSearchItem {
+  id: number;
+  name: string;
+  picture?: string;
+  picture_small: string;
+}
+
+export interface AlbumSearchItem {
+  id: number;
+  title: string;
+  cover?: string;
+  cover_small: string;
+  picture?: string;
+  artist: {
+    id: number;
+    name: string;
+  };
+}
+
+export interface PlaylistSearchItem {
+  id: number;
+  title: string;
+  cover?: string;
+  picture_small: string;
+}
+export interface SearchResult {
+  artists: ArtistSearchItem[];
+  albums: AlbumSearchItem[];
+  playlists: PlaylistSearchItem[];
+  tracks: Track[];
+}

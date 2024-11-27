@@ -56,6 +56,9 @@ export interface Albums {
 export interface Track {
   id?: number;
   index: number;
+  albumId?: number | undefined;
+  albumTrackId?: number | undefined;
+  albumDetailId?: number | undefined;
   title?: string | undefined;
   title_short?: string | undefined;
   duration: number;

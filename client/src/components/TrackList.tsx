@@ -3,13 +3,15 @@ import formatDuration from "../utils/formatDuration";
 import PlayButton from "./PlayButton";
 
 function TrackList({
-  id,
   title,
   duration,
   artist,
   imageBig,
   imageSmall,
   index,
+  albumTrackId,
+  albumId,
+  albumDetailId,
 }: Track) {
   return (
     <li className="text-primary flex justify-between items-center group gap-y-8 gap-x-4 laptop:gap-20 border-secondary-250 border-b-2 w-full max-w-[800px] p-4 laptop:py-6 laptop:px-8 hover:bg-primary/5">
@@ -22,7 +24,11 @@ function TrackList({
             className=" rounded-full border-2 border-accent w-14 h-14 laptop:w-24 laptop:h-24"
           />
           <div className="absolute bottom-0 right-0 hidden group-hover:flex ">
-            <PlayButton albumTrackId={id} />
+            <PlayButton
+              albumId={albumId}
+              albumTrackId={albumTrackId}
+              albumDetailId={albumDetailId}
+            />
           </div>
         </div>
       </div>

@@ -58,7 +58,10 @@ function PlaylistPage() {
                         className="rounded-full border-2 border-accent w-14 h-14 laptop:w-24 laptop:h-24"
                       />
                       <div className="absolute bottom-0 right-0 hidden group-hover:flex">
-                        <PlayButton playlistTrackId={track.id} />
+                        <PlayButton
+                          playlistTrackId={track.id}
+                          playlistId={id}
+                        />
                       </div>
                     </div>
                   </div>

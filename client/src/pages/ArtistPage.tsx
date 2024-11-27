@@ -94,13 +94,14 @@ function ArtistPage() {
                 className="w-full mx-auto flex flex-col items-center"
               >
                 <TrackList
-                  id={track.id}
                   title={track.title_short}
                   duration={track.duration}
                   artist={track.artist}
                   imageBig={topAlbums[0].cover_big}
                   imageSmall={topAlbums[0].cover_small}
                   index={index}
+                  albumTrackId={track.id}
+                  albumId={topAlbums[0].id}
                 />
               </ul>
             ))}

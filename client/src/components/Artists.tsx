@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import type { Artist } from "../types/type";
 
 interface ArtistProps {
-  dataArtist: Artist[];
+  artists: Artist[];
 }
-function Artists({ dataArtist }: ArtistProps) {
+function Artists({ artists }: ArtistProps) {
   return (
     <section className="mb-8 w-full my-10 laptop:my-20 space-y-10 laptop:space-y-20">
       <h2 className="font-title text-primary mb-6 text-3xl laptop:text-start text-center laptop:pl-20 laptop:text-6xl">
@@ -12,7 +12,7 @@ function Artists({ dataArtist }: ArtistProps) {
       </h2>
       <div className="w-full px-2 laptop:px-10 ">
         <div className="flex laptop:grid laptop:grid-cols-4 desktop:grid-cols-5 gap-4 w-full laptop:gap-8 overflow-x-auto scrollbar-hide">
-          {dataArtist.map((artist) => {
+          {artists.map((artist) => {
             return (
               artist && (
                 <article key={artist.id} className="ml-10">

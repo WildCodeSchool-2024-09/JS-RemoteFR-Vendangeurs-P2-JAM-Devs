@@ -2,56 +2,77 @@ import { useEffect, useState } from "react";
 import Artists from "../components/Artists";
 import BannerHome from "../components/BannerHome.tsx";
 import BannerSection from "../components/BannerSection.tsx";
+import Loader from "../components/Loader.tsx";
 import Playlists from "../components/Playlists";
 import Wrapper from "../components/Wrapper.tsx";
+import {
+  searchArtistsHome,
+  searchBannerPlaylist,
+  searchPlaylistHome,
+} from "../services/deezerApi.ts";
 import type { Artist, Playlist } from "../types/type.ts";
 
 function Home() {
-  const [playlist, setPlaylist] = useState<Playlist[]>([]);
+  const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [artists, setArtists] = useState<Artist[]>([]);
+  const [bannerPlaylist, setBannerPlaylist] = useState<Playlist>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const cachedPlaylist = localStorage.getItem("playlist");
-    const cachedArtists = localStorage.getItem("artists");
+    const fetchData = async () => {
+      try {
+        const storedBannerData = sessionStorage.getItem("bannerPlaylist");
+        const storedPlaylistsData = sessionStorage.getItem("playlists");
+        const storedArtistsData = sessionStorage.getItem("artists");
 
-    if (cachedPlaylist) {
-      setPlaylist(JSON.parse(cachedPlaylist));
-    } else {
-      fetch("http://localhost:3008/deezer-playlists")
-        .then((response) => response.json())
-        .then((data) => {
-          const validData = data.filter((item: Playlist) => !item.error);
+        if (storedBannerData && storedPlaylistsData && storedArtistsData) {
+          setBannerPlaylist(JSON.parse(storedBannerData));
+          setPlaylists(JSON.parse(storedPlaylistsData));
+          setArtists(JSON.parse(storedArtistsData));
+          setLoading(false);
+        } else {
+          const bannerDatas = await searchBannerPlaylist();
+          const playlistDatas = await searchPlaylistHome();
+          const artistDatas = await searchArtistsHome();
 
-          setPlaylist(validData);
-          localStorage.setItem("playlist", JSON.stringify(data));
-        })
-        .catch((error) => console.error(error));
-    }
-    if (cachedArtists) {
-      setArtists(JSON.parse(cachedArtists));
-    } else {
-      fetch("http://localhost:3008/deezer-artists")
-        .then((response) => response.json())
-        .then((data) => {
-          const validData = data.filter((item: Artist) => !item.error);
+          sessionStorage.setItem("bannerPlaylist", JSON.stringify(bannerDatas));
+          sessionStorage.setItem("playlists", JSON.stringify(playlistDatas));
+          sessionStorage.setItem("artists", JSON.stringify(artistDatas));
 
-          setArtists(validData);
-          localStorage.setItem("artists", JSON.stringify(data));
-        })
-        .catch((error) => console.error(error));
-    }
+          setBannerPlaylist(bannerDatas);
+          setPlaylists(playlistDatas);
+          setArtists(artistDatas);
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("Erreur lors du chargement des données :", err);
+      }
+    };
+
+    fetchData();
   }, []);
+
   return (
     <>
-      <BannerSection showBg={false} showBorder={false} blur={true}>
-        <BannerHome />
-      </BannerSection>
-      <Wrapper variantWidth={true}>
-        <Playlists dataPlaylist={playlist} />
-        <Artists dataArtist={artists} />
-      </Wrapper>
+      {loading && <Loader />}
+      {!loading && (
+        <>
+          <BannerSection showBg={false} showBorder={false} blur={true}>
+            <Wrapper variantWidth={false}>
+              <BannerHome
+                id={bannerPlaylist?.id}
+                picture={bannerPlaylist?.picture_big}
+                title={bannerPlaylist?.title}
+              />
+            </Wrapper>
+          </BannerSection>
+          <Wrapper variantWidth={true}>
+            <Playlists playlists={playlists} />
+            <Artists artists={artists} />
+          </Wrapper>
+        </>
+      )}
     </>
   );
 }
-
 export default Home;

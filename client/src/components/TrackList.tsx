@@ -12,7 +12,9 @@ function TrackList({
   return (
     <li className="text-primary flex justify-between items-center gap-y-8 gap-x-4 laptop:gap-20 border-secondary-250 border-b-4 w-full max-w-[800px] p-4 laptop:py-6 laptop:px-8 hover:bg-primary/5">
       <div className="flex justify-center items-center gap-10">
-        <span className="hidden laptop:block text-lg">{index + 1}</span>
+        <span className="hidden laptop:block text-lg w-6 text-center">
+          {index + 1}
+        </span>
         <div className="bg-secondary-200 w-[60px] h-[60px] laptop:w-[100px] laptop:h-[100px] rounded-full flex items-center justify-center">
           <img
             src={window.innerWidth > 1024 ? imageBig : imageSmall}

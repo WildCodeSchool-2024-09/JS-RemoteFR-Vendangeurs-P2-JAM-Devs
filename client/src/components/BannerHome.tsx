@@ -1,33 +1,36 @@
+import { Link } from "react-router-dom";
 import Play from "../assets/icons/Play.svg";
-import face_album from "../assets/icons/album_face.webp";
 
-function BannerHome() {
+interface BannerHomeProp {
+  id: number | undefined;
+  picture: string | undefined;
+  title: string | undefined;
+}
+
+function BannerHome({ id, picture, title }: BannerHomeProp) {
   return (
-    <div className="laptop:flex laptop:gap-64">
-      <div className="flex justify-center">
-        <img
-          src={face_album}
-          alt="playlist"
-          className="w-52 h-52 rounded-md laptop:w-80 laptop:h-80"
-        />
+    <div className="flex flex-col laptop:flex-row justify-between items-center mx-auto p-4 ">
+      <div className="flex laptop:w-1/2">
+        <Link to={`playlist/${id}`}>
+          <img
+            src={picture}
+            alt="playlist"
+            className="w-52 h-52 rounded-md laptop:w-80 laptop:h-80"
+          />
+        </Link>
       </div>
-      <div>
-        <h1 className="my-4 text-3xl laptop:text-6xl text-primary font-title">
-          Titre de la playlist
-        </h1>
-        <p className="text-primary text-sm font-text laptop:w-96 laptop:text-xl">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore,
-          aperiam itaque ipsum fugit pariatur eum iste, molestias velit
-          incidunt, officiis dignissimos rerum commodi.
-        </p>
-        <div className="flex justify-end">
-          <button
-            type="button"
-            className="flex bg-accent p-3 my-2 rounded-full"
-          >
-            <img src={Play} alt="play" className="w-8 h-8" />
-          </button>
-        </div>
+      <div className="flex flex-col justify-start items-center laptop:w-2/3 laptop:gap-y-6">
+        <Link to={`playlist/${id}`}>
+          <h1 className="my-4 text-3xl laptop:text-6xl text-primary font-title w-full">
+            {title}
+          </h1>
+        </Link>
+        <button
+          type="button"
+          className="flex justify-center items-center bg-accent laptop:my-2 rounded-full w-12 h-12 laptop:w-14 laptop:h-14"
+        >
+          <img src={Play} alt="play" className="w-8 h-8" />
+        </button>
       </div>
     </div>
   );

@@ -3,10 +3,10 @@ import type { Playlist } from "../types/type";
 import PlayButton from "./PlayButton";
 
 interface PlaylistsProps {
-  dataPlaylist: Playlist[];
+  playlists: Playlist[];
 }
 
-function Playlists({ dataPlaylist }: PlaylistsProps) {
+function Playlists({ playlists }: PlaylistsProps) {
   return (
     <section className="mb-8 w-full my-10 laptop:my-20 space-y-10 laptop:space-y-20 ">
       <h2 className="font-title text-primary mb-6 text-3xl text-center laptop:text-start laptop:pl-20 laptop:text-6xl">
@@ -14,7 +14,7 @@ function Playlists({ dataPlaylist }: PlaylistsProps) {
       </h2>
       <div className="w-full px-2 laptop:px-10 ">
         <div className="flex laptop:grid laptop:grid-cols-4 desktop:grid-cols-5 gap-4 w-full laptop:gap-8 overflow-x-auto  scrollbar-hide">
-          {dataPlaylist.map((playlist) => {
+          {playlists.map((playlist) => {
             return (
               <article key={playlist.id} className="ml-10 group">
                 <div className="justify-center items-center flex flex-col gap-2 flex-shrink-0">

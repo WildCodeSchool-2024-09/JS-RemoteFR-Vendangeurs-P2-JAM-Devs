@@ -11,7 +11,7 @@ function HeroBanner({
   release,
 }: HeroBannerProps) {
   return (
-    <div className="flex flex-col gap-3 py-4 laptop:flex-row justify-center items-center laptop:items-start  laptop:gap-60 laptop:w-1/2 h-60 laptop:h-80">
+    <div className="flex flex-col gap-3 py-4 laptop:flex-row justify-between items-center laptop:items-start laptop:w-[900px]  ">
       {picture || cover ? (
         <img
           src={picture || cover}
@@ -21,9 +21,11 @@ function HeroBanner({
       ) : (
         ""
       )}
-      <div className="flex flex-col gap-2 text-center items-center laptop:text-start laptop:gap-y-2">
+      <div
+        className={`flex flex-col gap-2 text-center items-center laptop:text-start laptop:gap-y-2  ${title ? "laptop:pl-20" : ""}`}
+      >
         <h2
-          className={`text-3xl laptop:text-6xl text-primary font-title w-auto ${title ? "text-center" : ""}`}
+          className={` text-3xl laptop:text-6xl text-primary font-title w-full  ${title ? "text-center" : ""}`}
         >
           {name || title}
         </h2>

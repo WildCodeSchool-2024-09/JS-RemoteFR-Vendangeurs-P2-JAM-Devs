@@ -14,6 +14,7 @@ function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.5);
+
   // CONTEXTE
   const { playerState } = usePlayer();
 

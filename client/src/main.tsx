@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import AlbumDetails from "./pages/AlbumDetails";
 import ArtistPage from "./pages/ArtistPage";
+import Error404 from "./pages/Error404";
 import Home from "./pages/Home";
 import PlaylistPage from "./pages/PlaylistPage";
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         element: <AlbumDetails />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error404 />,
   },
 ]);
 

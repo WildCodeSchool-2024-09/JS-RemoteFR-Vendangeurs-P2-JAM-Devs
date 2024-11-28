@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import BreakDisc from "../assets/icons/BreackDisc.svg";
 import Home from "../assets/icons/Home.svg";
+import BreakDisc from "../assets/images/BreakDisc.svg";
 
 export default function Error404() {
   return (

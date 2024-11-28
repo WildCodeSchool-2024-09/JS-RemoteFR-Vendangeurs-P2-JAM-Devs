@@ -42,22 +42,22 @@ function AlbumDetails() {
       </BannerSection>
 
       <Wrapper variantWidth={false}>
-        {tracks?.length > 0 ? (
-          tracks.map((track, index) => (
-            <ul key={track.id}>
-              <TrackList
-                title={track.title_short}
-                duration={track.duration}
-                artist={track.artist}
-                imageBig={album?.cover_big}
-                imageSmall={album?.cover_small}
-                index={index}
-              />
-            </ul>
-          ))
-        ) : (
-          <p>Chargement des pistes...</p>
-        )}
+        {tracks?.length > 0
+          ? tracks.map((track, index) => (
+              <ul key={track.id}>
+                <TrackList
+                  title={track.title_short}
+                  duration={track.duration}
+                  artist={track.artist}
+                  imageBig={album?.cover_big}
+                  imageSmall={album?.cover_small}
+                  index={index}
+                  albumDetailId={album?.id}
+                  albumTrackId={track.id}
+                />
+              </ul>
+            ))
+          : ""}
       </Wrapper>
     </div>
   );

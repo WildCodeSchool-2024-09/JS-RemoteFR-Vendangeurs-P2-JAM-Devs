@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BannerPlaylist from "../components/BannerPlaylist";
 import BannerSection from "../components/BannerSection";
+import PlayButton from "../components/PlayButton";
 import Wrapper from "../components/Wrapper";
 import type { Playlist, Track } from "../types/type";
 import formatDuration from "../utils/formatDuration";
@@ -40,13 +41,13 @@ function PlaylistPage() {
               {tracks.map((track, index) => (
                 <li
                   key={track.id}
-                  className="flex justify-between items-center gap-y-8 gap-x-4 laptop:gap-20 border-secondary-250 border-b-2 w-full p-4 max-w-[800px] laptop:py-6 laptop:px-8 hover:bg-primary/5"
+                  className="flex justify-between group items-center gap-y-8 gap-x-4 laptop:gap-20 border-secondary-250 border-b-2 w-full p-4 max-w-[800px] laptop:py-6 laptop:px-8 hover:bg-primary/5"
                 >
                   <div className="flex justify-center items-center gap-10">
                     <span className="hidden laptop:block text-lg">
                       {index + 1}
                     </span>
-                    <div className="bg-secondary-100 w-[60px] h-[60px] laptop:w-[100px] laptop:h-[100px] rounded-full flex items-center justify-center">
+                    <div className="bg-secondary-100 relative w-[60px] h-[60px] laptop:w-[100px] laptop:h-[100px] rounded-full flex items-center justify-center">
                       <img
                         src={
                           window.innerWidth >= 1024
@@ -56,6 +57,12 @@ function PlaylistPage() {
                         alt={track.title}
                         className="rounded-full border-2 border-accent w-14 h-14 laptop:w-24 laptop:h-24"
                       />
+                      <div className="absolute bottom-0 right-0 hidden group-hover:flex">
+                        <PlayButton
+                          playlistTrackId={track.id}
+                          playlistId={id}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="w-56 text-start laptop:text-center">

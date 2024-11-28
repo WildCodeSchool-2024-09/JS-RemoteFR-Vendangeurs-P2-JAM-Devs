@@ -54,7 +54,10 @@ function AlbumDetails() {
           <Wrapper variantWidth={false}>
             {tracks?.length > 0
               ? tracks.map((track, index) => (
-                  <ul key={track.id}>
+                  <ul
+                    key={track.id}
+                    className="w-full mx-auto flex flex-col items-center"
+                  >
                     <TrackList
                       title={track.title_short}
                       duration={track.duration}

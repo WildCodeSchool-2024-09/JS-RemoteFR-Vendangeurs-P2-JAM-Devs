@@ -245,3 +245,97 @@ export async function searchAlbumsTracks(id: string | number | undefined) {
     }
   }
 }
+
+// ********************** Fetch Search ******************************
+
+// Search Query Artist
+export async function searchQueryArtist(query: string | undefined) {
+  try {
+    const response = await fetch(`${BASE_URL}/search/artist?q=${query}`);
+    if (!response.ok) {
+      throw new Error("Erreur lors de la recherches des pistes d'une playlist");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Erreur dans searchQueryArtist:", error.message);
+    } else {
+      console.error("Erreur inconnue dans searchQueryArtist");
+    }
+  }
+}
+
+// Search Query Album
+export async function searchQueryAlbum(query: string | undefined) {
+  try {
+    const response = await fetch(`${BASE_URL}/search/album?q=${query}`);
+    if (!response.ok) {
+      throw new Error("Erreur lors de la recherches des pistes d'une playlist");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Erreur dans searchQueryAlbum:", error.message);
+    } else {
+      console.error("Erreur inconnue dans searchQueryAlbum");
+    }
+  }
+}
+
+// Search Query Playlist
+export async function searchQueryPlaylist(query: string | undefined) {
+  try {
+    const response = await fetch(`${BASE_URL}/search/playlist?q=${query}`);
+    if (!response.ok) {
+      throw new Error("Erreur lors de la recherches des pistes d'une playlist");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Erreur dans searchQueryPlaylist:", error.message);
+    } else {
+      console.error("Erreur inconnue dans searchQueryPlaylist");
+    }
+  }
+}
+
+// Search Query Track
+export async function searchQueryTrack(query: string | undefined) {
+  try {
+    const response = await fetch(`${BASE_URL}/search/track?q=${query}`);
+    if (!response.ok) {
+      throw new Error("Erreur lors de la recherches des pistes d'une playlist");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Erreur dans searchQueryTrack:", error.message);
+    } else {
+      console.error("Erreur inconnue dans searchQueryTrack");
+    }
+  }
+}
+
+// ********************** Fetch Track ******************************
+
+// Track
+export async function searchTrack(id: string | number | undefined) {
+  try {
+    const response = await fetch(`${BASE_URL}/track/${id}`);
+    if (!response.ok) {
+      throw new Error("Erreur lors de la recherches des pistes d'une playlist");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Erreur dans searchTrack:", error.message);
+    } else {
+      console.error("Erreur inconnue dans searchTrack");
+    }
+  }
+}

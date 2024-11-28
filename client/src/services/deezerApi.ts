@@ -2,7 +2,7 @@ import type { Artist, Playlist } from "../types/type";
 import getRandomIds from "../utils/getRandomIds";
 import shuffleArray from "../utils/shuffleArray";
 
-const BASE_URL = "/api";
+const BASE_URL = "https://api.deezer.com";
 
 // ********************** Fetch HomePage ***************************
 

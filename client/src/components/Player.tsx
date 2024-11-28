@@ -330,7 +330,7 @@ function Player() {
             step="0.01"
             value={volume}
             onChange={handleVolumeChange}
-            className="hidden laptop:flex w-36 h-2 rounded-lg appearance-none cursor-pointer dark:bg-secondary-100 ${volumeTrackColor}"
+            className="hidden laptop:flex w-36 h-2 rounded-lg appearance-none cursor-pointer bg-secondary-100"
           />
 
           {/* BOUTON SON */}

@@ -133,25 +133,17 @@ function SearchResults({
                 key={track.id}
                 className="text-lg p-4 border-r-2 border-b-2 border-primary/5 rounded-lg shadow-secondary-100/80 shadow-sm laptop:hover:shadow-md laptop:hover:shadow-secondary-100 laptop:hover:text-accent group"
               >
-                <Link
-                  to={`/track/${track.id}`}
-                  onClick={clearSearch}
-                  className="flex items-center justify-between"
-                >
-                  <div className="relative w-14 h-14 flex justify-center items-center">
-                    <img
-                      src={track.album?.cover_small}
-                      alt={track.title}
-                      className="rounded-full group-hover:hidden"
-                    />{" "}
-                    <div className="absolute hidden group-hover:flex">
-                      <PlayButton id={track.id ?? 0} />
-                    </div>
+                <div className="relative w-14 h-14 flex justify-center items-center">
+                  <img
+                    src={track.album?.cover_small}
+                    alt={track.title}
+                    className="rounded-full group-hover:hidden"
+                  />{" "}
+                  <div className="absolute hidden group-hover:flex">
+                    <PlayButton trackSearchId={track.id ?? 0} />
                   </div>
-                  <p className="laptop:pr-12">
-                    {truncateText(track.title, 15)}
-                  </p>
-                </Link>
+                </div>
+                <p className="laptop:pr-12">{truncateText(track.title, 15)}</p>
               </div>
             ))}
           </div>

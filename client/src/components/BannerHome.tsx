@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import Play from "../assets/icons/Play.svg";
+// import Play from "../assets/icons/Play.svg";
+import PlayButton from "./PlayButton";
 
 interface BannerHomeProp {
   id: number | undefined;
@@ -25,12 +26,7 @@ function BannerHome({ id, picture, title }: BannerHomeProp) {
             {title}
           </h1>
         </Link>
-        <button
-          type="button"
-          className="flex justify-center items-center bg-accent laptop:my-2 rounded-full w-12 h-12 laptop:w-14 laptop:h-14"
-        >
-          <img src={Play} alt="play" className="w-8 h-8" />
-        </button>
+        <PlayButton playlistId={id} />
       </div>
     </div>
   );

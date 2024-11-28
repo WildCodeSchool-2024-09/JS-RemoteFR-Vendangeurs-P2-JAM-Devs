@@ -1,5 +1,9 @@
 import Play from "../assets/icons/Play.svg";
 import { usePlayer } from "../context/PlayerContext";
+import {
+  searchAlbumsTracks,
+  searchPlaylistTracks,
+} from "../services/deezerApi";
 
 interface Track {
   id: number;
@@ -15,6 +19,7 @@ interface PlayButtonProps {
   track?: Track;
   albumDetailId?: number;
   id?: number;
+  trackSearchId?: number;
 }
 
 function PlayButton({
@@ -23,55 +28,56 @@ function PlayButton({
   albumId,
   albumTrackId,
   albumDetailId,
+  trackSearchId,
 }: PlayButtonProps) {
   const { setPlayerState } = usePlayer();
 
-  const handlePlayTrackList = () => {
+  const handlePlayTrackList = async () => {
     if (playlistTrackId) {
-      fetch(`/api/playlist/${playlistId}/tracks`)
-        .then((response) => response.json())
-        .then((data) =>
-          setPlayerState({
-            tracks: data.data,
-            currentTrackIndex: data.data.findIndex(
-              (track: Track) => track.id === playlistTrackId,
-            ),
-          }),
-        );
+      const playlistData = await searchPlaylistTracks(playlistId);
+
+      setPlayerState({
+        tracks: playlistData,
+        currentTrackIndex: playlistData.findIndex(
+          (track: Track) => track.id === playlistTrackId,
+        ),
+      });
     } else if (playlistId) {
-      fetch(`/api/playlist/${playlistId}/tracks`)
-        .then((response) => response.json())
-        .then((data) =>
-          setPlayerState({
-            tracks: data.data,
-            currentTrackIndex: 0,
-          }),
-        );
+      const playlistData = await searchPlaylistTracks(playlistId);
+
+      setPlayerState({
+        tracks: playlistData,
+        currentTrackIndex: 0,
+      });
     } else if (albumId) {
-      fetch(`/api/album/${albumId}/tracks`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPlayerState({
-            tracks: data.data,
-            currentTrackIndex: data.data.findIndex(
-              (track: Track) => track.id === albumTrackId,
-            ),
-          });
-        });
+      const albumData = await searchAlbumsTracks(albumId);
+
+      setPlayerState({
+        tracks: albumData.data,
+        currentTrackIndex: albumData.data.findIndex(
+          (track: Track) => track.id === albumTrackId,
+        ),
+      });
     } else if (albumDetailId) {
-      fetch(`/api/album/${albumDetailId}/tracks`)
+      const albumData = await searchAlbumsTracks(albumDetailId);
+
+      setPlayerState({
+        tracks: albumData.data,
+        currentTrackIndex: albumData.data.findIndex(
+          (track: Track) => track.id === albumTrackId,
+        ),
+      });
+    } else if (trackSearchId) {
+      fetch(`/api/track/${trackSearchId}`)
         .then((response) => response.json())
         .then((data) => {
           setPlayerState({
-            tracks: data.data,
-            currentTrackIndex: data.data.findIndex(
-              (track: Track) => track.id === albumTrackId,
-            ),
+            tracks: [data],
+            currentTrackIndex: 0,
           });
         });
     }
   };
-
   return (
     <button
       type="button"

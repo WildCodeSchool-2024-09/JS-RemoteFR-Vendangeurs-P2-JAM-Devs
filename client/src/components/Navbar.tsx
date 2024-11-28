@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../assets/icons/LogoJamOrange.svg";
 import type { SearchResult } from "../types/type";
 import NavigationButtons from "./NavigationButtons";
@@ -21,7 +22,10 @@ function Navbar() {
   return (
     <section className="flex justify-between items-center px-4 laptop:px-20 py-2 w-full">
       <div className="w-12 h-12 laptop:w-24 laptop:h-24 flex justify-center items-center">
-        <img src={Logo} alt="Logo JAM" />
+        <Link to="/">
+          {" "}
+          <img src={Logo} alt="Logo JAM" />
+        </Link>
       </div>
       <article className="flex items-center gap-2 laptop:gap-4 laptop:justify-center laptop:w-1/2">
         <NavigationButtons />

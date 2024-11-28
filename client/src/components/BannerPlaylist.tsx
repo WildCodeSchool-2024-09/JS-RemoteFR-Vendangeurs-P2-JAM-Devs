@@ -12,9 +12,7 @@ function BannerPlaylist({
         alt={title}
         className="w-full h-full object-cover block"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#130E1D] to-transparent">
-        {" "}
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#130E1D] to-transparent" />
     </div>
   );
 }

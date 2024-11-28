@@ -109,6 +109,8 @@ function ArtistPage() {
                       imageBig={topAlbums[0].cover_big}
                       imageSmall={topAlbums[0].cover_small}
                       index={index}
+                      albumTrackId={track.id}
+                      albumId={topAlbums[0].id}
                     />
                   </ul>
                 ))}

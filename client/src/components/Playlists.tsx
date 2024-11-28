@@ -27,7 +27,7 @@ function Playlists({ playlists }: PlaylistsProps) {
                       />
                     </Link>
                     <div className="absolute bottom-0 right-0 hidden group-hover:flex">
-                      <PlayButton id={playlist.id} />
+                      <PlayButton playlistId={playlist.id} />
                     </div>
                   </div>
                   <span className="text-primary laptop:text-lg font-text max-w-36 text-center">

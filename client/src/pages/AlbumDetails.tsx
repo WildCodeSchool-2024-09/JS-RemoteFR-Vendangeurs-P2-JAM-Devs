@@ -54,7 +54,7 @@ function AlbumDetails() {
           <Wrapper variantWidth={false}>
             {tracks?.length > 0
               ? tracks.map((track, index) => (
-                  <ul key={track.id} className="flex justify-center">
+                  <ul key={track.id}>
                     <TrackList
                       title={track.title_short}
                       duration={track.duration}
@@ -62,6 +62,8 @@ function AlbumDetails() {
                       imageBig={album?.cover_big}
                       imageSmall={album?.cover_small}
                       index={index}
+                      albumDetailId={album?.id}
+                      albumTrackId={track.id}
                     />
                   </ul>
                 ))

@@ -1,19 +1,81 @@
 import Play from "../assets/icons/Play.svg";
 import { usePlayer } from "../context/PlayerContext";
 
-function PlayButton({ id }: { id: number }) {
+interface Track {
+  id: number;
+  title: string;
+  artist: string;
+}
+
+interface PlayButtonProps {
+  playlistId?: number | string;
+  playlistTrackId?: number;
+  albumTrackId?: number;
+  albumId?: number;
+  track?: Track;
+  albumDetailId?: number;
+  id?: number;
+}
+
+function PlayButton({
+  playlistTrackId,
+  playlistId,
+  albumId,
+  albumTrackId,
+  albumDetailId,
+}: PlayButtonProps) {
   const { setPlayerState } = usePlayer();
 
   const handlePlayTrackList = () => {
-    fetch(`/api/playlist/${id}/tracks`)
-      .then((response) => response.json())
-      .then((data) => setPlayerState(data.data));
+    if (playlistTrackId) {
+      fetch(`/api/playlist/${playlistId}/tracks`)
+        .then((response) => response.json())
+        .then((data) =>
+          setPlayerState({
+            tracks: data.data,
+            currentTrackIndex: data.data.findIndex(
+              (track: Track) => track.id === playlistTrackId,
+            ),
+          }),
+        );
+    } else if (playlistId) {
+      fetch(`/api/playlist/${playlistId}/tracks`)
+        .then((response) => response.json())
+        .then((data) =>
+          setPlayerState({
+            tracks: data.data,
+            currentTrackIndex: 0,
+          }),
+        );
+    } else if (albumId) {
+      fetch(`/api/album/${albumId}/tracks`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPlayerState({
+            tracks: data.data,
+            currentTrackIndex: data.data.findIndex(
+              (track: Track) => track.id === albumTrackId,
+            ),
+          });
+        });
+    } else if (albumDetailId) {
+      fetch(`/api/album/${albumDetailId}/tracks`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPlayerState({
+            tracks: data.data,
+            currentTrackIndex: data.data.findIndex(
+              (track: Track) => track.id === albumTrackId,
+            ),
+          });
+        });
+    }
   };
 
   return (
     <button
       type="button"
-      className="flex bg-accent p-2 rounded-full"
+      className="flex bg-accent p-2 rounded-full border-2 border-secondary-100"
       onClick={handlePlayTrackList}
     >
       <img src={Play} alt=" bouton play" className="w-6 h-6" />

@@ -117,7 +117,7 @@ export async function searchPlaylist(id: string | undefined) {
 }
 
 // Playlists Tracks
-export async function searchPlaylistTracks(id: string | undefined) {
+export async function searchPlaylistTracks(id: string | number | undefined) {
   try {
     const response = await fetch(`${BASE_URL}/playlist/${id}/tracks`);
     if (!response.ok) {
@@ -229,7 +229,7 @@ export async function searchAlbum(id: string | undefined) {
 }
 
 // Albums Tracks
-export async function searchAlbumsTracks(id: string | undefined) {
+export async function searchAlbumsTracks(id: string | number | undefined) {
   try {
     const response = await fetch(`${BASE_URL}/album/${id}/tracks`);
     if (!response.ok) {

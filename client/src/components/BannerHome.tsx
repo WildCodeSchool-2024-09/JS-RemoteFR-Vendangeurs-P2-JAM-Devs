@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import Play from "../assets/icons/Play.svg";
 import PlayButton from "./PlayButton";
 
 interface BannerHomeProp {

@@ -123,7 +123,7 @@ function SearchResults({
 
       {/* Section des tracks */}
       {results.tracks.length > 0 && (
-        <div className="border-b-2 border-secondary-150 m-auto w-full h-auto p-6">
+        <div className="m-auto w-full h-auto p-6">
           <h3 className="text-lg font-bold laptop:text-4xl laptop:my-4 text-accent">
             Titres
           </h3>
@@ -131,17 +131,17 @@ function SearchResults({
             {results.tracks.map((track) => (
               <div
                 key={track.id}
-                className="text-lg p-4 border-r-2 border-b-2 border-primary/5 rounded-lg shadow-secondary-100/80 shadow-sm laptop:hover:shadow-md laptop:hover:shadow-secondary-100 laptop:hover:text-accent group"
+                className="text-lg p-4 border-r-2 border-b-2 border-primary/5 rounded-lg shadow-secondary-100/80 shadow-sm laptop:hover:shadow-md laptop:hover:shadow-secondary-100 laptop:hover:text-accent group flex justify-between items-center"
               >
-                <div className="relative w-14 h-14 flex justify-center items-center">
+                <div className="relative w-14 h-14 ">
                   <img
                     src={track.album?.cover_small}
                     alt={track.title}
                     className="rounded-full group-hover:hidden"
-                  />{" "}
-                  <div className="absolute hidden group-hover:flex">
-                    <PlayButton trackSearchId={track.id ?? 0} />
-                  </div>
+                  />
+                </div>
+                <div className="absolute hidden group-hover:flex">
+                  <PlayButton trackSearchId={track.id ?? 0} />
                 </div>
                 <p className="laptop:pr-12">{truncateText(track.title, 15)}</p>
               </div>

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import Search from "../assets/icons/Search.svg";
 import cross from "../assets/icons/cross.svg";
+import {
+  searchQueryAlbum,
+  searchQueryArtist,
+  searchQueryPlaylist,
+  searchQueryTrack,
+} from "../services/deezerApi";
 import type { SearchResult } from "../types/type";
 
 function SearchBar({
@@ -19,20 +25,12 @@ function SearchBar({
     }
 
     try {
-      const [artistResponse, albumResponse, playlistResponse, trackResponse] =
-        await Promise.all([
-          fetch(`/api/search/artist?q=${query}`),
-          fetch(`/api/search/album?q=${query}`),
-          fetch(`/api/search/playlist?q=${query}`),
-          fetch(`/api/search/track?q=${query}`),
-        ]);
-
       const [artistData, albumData, playlistData, trackData] =
         await Promise.all([
-          artistResponse.json(),
-          albumResponse.json(),
-          playlistResponse.json(),
-          trackResponse.json(),
+          searchQueryArtist(query),
+          searchQueryAlbum(query),
+          searchQueryPlaylist(query),
+          searchQueryTrack(query),
         ]);
 
       const results = {

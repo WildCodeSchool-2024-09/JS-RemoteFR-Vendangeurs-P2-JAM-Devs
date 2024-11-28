@@ -3,6 +3,7 @@ import { usePlayer } from "../context/PlayerContext";
 import {
   searchAlbumsTracks,
   searchPlaylistTracks,
+  searchTrack,
 } from "../services/deezerApi";
 
 interface Track {
@@ -68,14 +69,12 @@ function PlayButton({
         ),
       });
     } else if (trackSearchId) {
-      fetch(`/api/track/${trackSearchId}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPlayerState({
-            tracks: [data],
-            currentTrackIndex: 0,
-          });
-        });
+      const trackData = await searchTrack(trackSearchId);
+
+      setPlayerState({
+        tracks: [trackData],
+        currentTrackIndex: 0,
+      });
     }
   };
   return (

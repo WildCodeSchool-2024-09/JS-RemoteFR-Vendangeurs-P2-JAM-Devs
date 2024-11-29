@@ -27,7 +27,7 @@ function Navbar() {
           <img src={Logo} alt="Logo JAM" />
         </Link>
       </div>
-      <article className="flex items-center gap-2 laptop:gap-4 laptop:justify-center laptop:w-1/2">
+      <article className="flex items-center gap-2 laptop:gap-4 laptop:justify-end laptop:w-1/2">
         <NavigationButtons />
         <div className="flex flex-col">
           <SearchBar setResult={setResult} setInputFocus={setInputFocus} />

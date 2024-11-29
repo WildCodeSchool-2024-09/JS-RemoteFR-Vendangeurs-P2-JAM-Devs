@@ -2,7 +2,7 @@ import type { Artist, Playlist } from "../types/type";
 import getRandomIds from "../utils/getRandomIds";
 import shuffleArray from "../utils/shuffleArray";
 
-const BASE_URL = "https://api.deezer.com";
+const BASE_URL = "https://proxyapideezer.vercel.app/api";
 
 // ********************** Fetch HomePage ***************************
 
@@ -59,6 +59,7 @@ export async function searchPlaylistHome() {
       }
     }
   }
+
   return playlistData;
 }
 
@@ -175,7 +176,7 @@ export async function searchArtistAlbums(id: string | undefined) {
 // Related Artists
 export async function searchRelatedArtsits(id: string | undefined) {
   try {
-    const response = await fetch(`${BASE_URL}/artist/${id}/related&limit=5`);
+    const response = await fetch(`${BASE_URL}/artist/${id}/related`);
     if (!response.ok) {
       throw new Error("Erreur lors de la recherches des pistes d'une playlist");
     }

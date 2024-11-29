@@ -24,7 +24,7 @@ function SearchResults({
     return null;
   }
   return (
-    <div className="absolute left-0 top-16 laptop:top-28 z-30 w-full bg-background text-primary p-4 laptop:gap-2">
+    <div className="absolute left-0 top-16 laptop:top-28 z-30 w-full bg-background text-primary p-4 laptop:gap-2 h-[507px] laptop:h-[704px] overflow-y-auto">
       {/* Section des artistes */}
       {results.artists.length > 0 && (
         <div className="border-b-2 border-secondary-150 m-auto w-full h-auto p-6">

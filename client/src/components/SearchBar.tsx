@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Search from "../assets/icons/Search.svg";
 import cross from "../assets/icons/cross.svg";
 import {
@@ -17,6 +17,7 @@ function SearchBar({
   setInputFocus: (value: boolean) => void;
 }) {
   const [input, setInput] = useState("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchData = async (query: string) => {
     if (!query.trim()) {
@@ -49,7 +50,14 @@ function SearchBar({
 
   const handleChange = (value: string) => {
     setInput(value);
-    fetchData(value);
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      fetchData(value);
+    }, 750);
   };
 
   const clearInput = () => {
